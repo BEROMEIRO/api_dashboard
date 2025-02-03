@@ -1,0 +1,14 @@
+# Ambiente Virtual
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+
+# Arquivos de configuração do sistema
+.vscode/
+.idea/
+
+# Credenciais (caso tenha)
+.env
