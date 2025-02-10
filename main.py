@@ -31,6 +31,17 @@ def clean_empty_items(db: Session = Depends(get_db)):
     crud.delete_empty_items(db)
     return {"message": "Itens vazios removidos com sucesso"}
 
-@app.on_event("startup")
-def startup():
-    reset_database() 
+@app.patch("/items/{item_id}/reduce_stock")
+def reduce_stock(item_id: int, quantity: int, db: Session = Depends(get_db)):
+    item = db.query(models.Item).filter(models.Item.id == item_id).first()
+    if item:
+        item.stock -= quantity
+        db.commit()
+        db.refresh(item)
+        return item
+    return {"error": "Item não encontrado"}
+
+
+# @app.on_event("startup")
+# def startup():
+#     reset_database() 
