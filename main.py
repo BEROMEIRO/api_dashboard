@@ -42,6 +42,3 @@ def reduce_stock(item_id: int, quantity: int, db: Session = Depends(get_db)):
     return {"error": "Item não encontrado"}
 
 
-# @app.on_event("startup")
-# def startup():
-#     reset_database() 
